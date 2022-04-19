@@ -1,9 +1,9 @@
 {
-    "name": "Spotifast",
-    "description": "Spotify chrome extension to quickly search and play the song you're looking for",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-      "default_popup": "index.html"
-    }
+  "name": "Spotifast",
+  "description": "Spotify chrome extension to quickly search and play the song you're looking for",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
   }
+}
