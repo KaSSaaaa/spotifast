@@ -1,8 +1,9 @@
 import './App.scss';
-import { Provider } from 'inversify-react';
+import { Provider, useInjection } from 'inversify-react';
 import { createContainer } from './lib/Container';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { addSdkToBody } from './addSdkToBody';
+import { IAuthenticationToken } from './lib/infrastructure/authentication/IAuthenticationToken';
 
 export function App() {
   useEffect(addSdkToBody, []);
@@ -10,8 +11,19 @@ export function App() {
   return (
     <Provider container={createContainer}>
       <div className="App">
-        <p>Hello there</p>
+        <Test/>
       </div>
     </Provider>
+  )
+}
+
+function Test() {
+  const authenticationToken = useInjection<IAuthenticationToken>(IAuthenticationToken.$);
+  const [value, setValue] = useState('nothing');
+  useEffect(() => {
+    authenticationToken.value().then(setValue, () => setValue('error'));
+  }, []);
+  return (
+    <p>{value}</p>
   )
 }

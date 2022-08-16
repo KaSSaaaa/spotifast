@@ -26,7 +26,7 @@ export default async function(context: Context, req: HttpRequest): Promise<void>
             body: JSON.stringify(response.data),
         };
     } catch(e) {
-        context.log(e.response.status, e.response.statusText);
+        context.log(e.response.status, e.response.statusText, e.response.data);
         context.res = {
             ...context.res,
             status: e.response.status,
