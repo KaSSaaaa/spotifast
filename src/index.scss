@@ -162,10 +162,6 @@ select {
   }
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  color: var(--text);
-}
-
 nav {
   display: flex;
   height: 3em;
@@ -181,6 +177,22 @@ nav {
   }
 }
 
+.svg-inline--fa {
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
+
+  &.primary {
+    opacity: 1;
+    &:hover {
+      transform: scale(1.05);
+      transition: all 50ms ease;
+    }
+  }
+}
+
 body {
-  background-color: var(--background);
+// background-color: var(--background);
+  color: var(--text);
 }

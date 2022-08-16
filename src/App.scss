@@ -1,7 +1,41 @@
-.App {
-  width: 300px;
-  height: 300px;
+
+header {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 1em .5em;
+
+  .audio-player-time-container {
+    display: flex;
+    flex-direction: column;
+    
+    .audio-player-times {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 .3em;
+      font-size: .85em;
+      opacity: .8;
+    }
+  }
+
+  .audio-player-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: .5em 1em;
+  }
+
+  .audio-player-volume-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .audio-player-volume {
+      margin-left: .5em;
+      width: 7em;
+    }
+  }
 }
