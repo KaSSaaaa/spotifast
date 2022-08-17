@@ -1,30 +1,21 @@
 
 
-:root {
+body {
   --ui-base: rgb(255, 255, 255);
   --primary: rgb(29, 183, 84);
   --danger: rgb(205, 26, 43);
   font-family: 'proxima-nova', sans-serif;
-  body[class*="dark"] {
-      --text: var(--ui-base);
-      --background: var(--gray-dark);
-      --gray-lighter: rgb(83, 83, 83);
-      --gray-light: rgb(64, 64, 64);
-      --gray: rgb(40, 40, 40);
-      --gray-dark: rgb(24, 24, 24);
-      --gray-darker: rgb(18, 18, 18);
-      --transparent: rgba(255, 255, 255, 5%);
-  }
-  body[class*="light"] {
-      --text: rgb(0, 0, 0);
-      --background: var(--ui-base);
-      --gray-lighter: rgb(237, 237, 237);
-      --gray-light: rgb(231, 231, 231);
-      --gray: rgb(205, 205, 205);
-      --gray-dark: rgb(191, 191, 191);
-      --gray-darker: rgb(172, 172, 172);
-      --transparent: rgba(0, 0, 0, 3%);
-  }
+  --background: var(--gray-dark);
+  --gray-lighter: rgb(83, 83, 83);
+  --gray-light: rgb(64, 64, 64);
+  --gray: rgb(40, 40, 40);
+  --gray-dark: rgb(24, 24, 24);
+  --gray-darker: rgb(18, 18, 18);
+  --transparent: rgba(255, 255, 255, 5%);
+  color: var(--text);
+  margin: 0;
+  max-width: 400px;
+  max-height: 150px;
 }
 
 ::-webkit-scrollbar {
@@ -178,21 +169,18 @@ nav {
 }
 
 .svg-inline--fa {
+  filter: drop-shadow(0.1em 0.1em 0.2em black);
   opacity: 0.6;
   &:hover {
     opacity: 1;
+    transition: all 250ms ease;
   }
 
   &.primary {
     opacity: 1;
     &:hover {
       transform: scale(1.05);
-      transition: all 50ms ease;
+      transition: all 250ms ease;
     }
   }
-}
-
-body {
-// background-color: var(--background);
-  color: var(--text);
 }
