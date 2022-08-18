@@ -9,24 +9,19 @@ import {
     faVolumeHigh,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Vibrant from 'node-vibrant';
-import { useState, useEffect } from 'react';
+import { useInjection } from 'inversify-react';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+import { IColorPalette } from './IColorPalette';
 import style from './MusicPlayer.module.scss';
 
-export function MusicPlayer() {
+export const MusicPlayer = observer(() => {
     const imageUrl = 'https://i.scdn.co/image/ab67616d00001e02e07e6833b024bdb852b96338';
-    const [color, setColor] = useState('');
-    const [textColor, setTextColor] = useState('');
+    const colorPalette = useInjection<IColorPalette>(IColorPalette.$);
 
     useEffect(() => {
-        Vibrant.from(imageUrl)
-            .getPalette()
-            .then((val) => {
-                setTextColor(val.LightVibrant?.getHex()!);
-                setColor(val.DarkVibrant?.getHex()!);
-                document.body.style.setProperty('--text', val.Vibrant?.getHex()!);
-            });
-    }, []);
+        colorPalette.from(imageUrl).then(() => document.body.style.setProperty('--text', colorPalette.vibrant));
+    }, [colorPalette]);
 
     return (
         <>
@@ -35,7 +30,7 @@ export function MusicPlayer() {
                 className={style['background-image']}
                 style={{
                     backgroundImage: `
-                linear-gradient(to bottom, ${textColor}44, ${color}),
+                linear-gradient(to bottom, ${colorPalette.light}44, ${colorPalette.dark}),
                 url("${imageUrl}")`,
                 }}
             />
@@ -68,4 +63,4 @@ export function MusicPlayer() {
             </div>
         </>
     );
-}
+});
