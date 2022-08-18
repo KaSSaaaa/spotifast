@@ -12,8 +12,8 @@ body {
     --transparent: rgba(255, 255, 255, 5%);
     color: var(--text);
     margin: 0;
-    max-width: 400px;
-    max-height: 150px;
+    width: 400px;
+    height: 150px;
 }
 
 ::-webkit-scrollbar {

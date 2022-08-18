@@ -1,4 +1,4 @@
-import { inject } from 'inversify';
+/* import { inject } from 'inversify';
 import { ILoginQueryFactory } from './ILoginQueryFactory';
 import { ILoginService } from './ILoginService';
 import { Token } from './Token';
@@ -51,3 +51,5 @@ export class CachedLoginServiceDecorator implements ILoginService {
         return token;
     }
 }
+ */
+export {};

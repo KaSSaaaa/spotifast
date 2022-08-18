@@ -1,18 +1,11 @@
 import 'reflect-metadata';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import './index.scss';
 import { App } from './App';
+import './globals';
 
-declare global {
-    interface Window {
-        onSpotifyWebPlaybackSDKReady: () => void;
-    }
-
-    var Spotify: any;
-}
-
-ReactDOM.render(
+render(
     <React.StrictMode>
         <App />
     </React.StrictMode>,
