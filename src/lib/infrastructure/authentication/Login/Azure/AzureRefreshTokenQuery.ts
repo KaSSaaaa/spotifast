@@ -1,21 +1,15 @@
-import axios from "axios";
-import { ICommand } from "../../../ICommand";
-import { AUTH_URL, redirect, SCOPE, Token } from "../Token";
+import axios from 'axios';
+import { ICommand } from '../../../ICommand';
+import { AUTH_URL, redirect, SCOPE, Token } from '../Token';
 
 export class AzureRefreshTokenQuery implements ICommand<Token> {
-    constructor(
-        private _refreshToken: string
-    ) {
-
-    }
+    constructor(private _refreshToken: string) {}
     async execute(): Promise<Token> {
-        const { 
-            access_token, 
-            expires_in,
-            scope 
-        } = (await axios.get(`${AUTH_URL}/api/RefreshToken?refreshToken=${this._refreshToken}`)).data;
+        const { access_token, expires_in, scope } = (
+            await axios.get(`${AUTH_URL}/api/RefreshToken?refreshToken=${this._refreshToken}`)
+        ).data;
 
-        if(scope !== SCOPE) {
+        if (scope !== SCOPE) {
             redirect();
             return Promise.reject();
         }
@@ -23,7 +17,7 @@ export class AzureRefreshTokenQuery implements ICommand<Token> {
         return {
             refreshToken: this._refreshToken,
             accessToken: access_token,
-            expiresIn: expires_in
+            expiresIn: expires_in,
         };
     }
 }

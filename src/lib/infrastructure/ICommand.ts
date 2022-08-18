@@ -1,5 +1,3 @@
-
-
 export interface ICommand<T> {
-    execute(): Promise<T>
+    execute(): Promise<T>;
 }
