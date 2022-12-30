@@ -167,7 +167,7 @@ nav {
 }
 
 .svg-inline--fa {
-    filter: drop-shadow(0.1em 0.1em 0.3em black);
+    filter: drop-shadow(0.05em 0.05em 0.05em var(--gray-darker));
     &:hover {
         transform: scale(1.05);
         transition: all 250ms ease;

@@ -12,15 +12,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { IColorPalette } from '../domain/colorPalette/IColorPalette';
+import { IColorPalette } from '../../domain/colorPalette/IColorPalette';
 import style from './MusicPlayer.module.scss';
+import { IPlayer } from '../../domain/player/IPlayer';
 
 export const MusicPlayer = observer(() => {
     const imageUrl = 'https://i.scdn.co/image/ab67616d00001e02e07e6833b024bdb852b96338';
     const colorPalette = useInjection<IColorPalette>(IColorPalette.$);
+    const player = useInjection<IPlayer>(IPlayer.$);
 
     useEffect(() => {
-        colorPalette.from(imageUrl).then(() => document.body.style.setProperty('--text', colorPalette.vibrant));
+        colorPalette.from(imageUrl).then(() => {
+            document.body.style.setProperty('--text', colorPalette.vibrant);
+        });
     }, [colorPalette]);
 
     return (
@@ -51,7 +55,12 @@ export const MusicPlayer = observer(() => {
                     <div className={style['audio-player-icons']}>
                         <FontAwesomeIcon icon={faShuffle} size={'lg'} />
                         <FontAwesomeIcon icon={faBackwardStep} size={'2x'} />
-                        <FontAwesomeIcon icon={faCirclePlay} size={'3x'} className="primary" />
+                        <FontAwesomeIcon
+                            icon={faCirclePlay}
+                            size={'3x'}
+                            className="primary"
+                            onClick={() => player.togglePlay()}
+                        />
                         <FontAwesomeIcon icon={faForwardStep} size={'2x'} />
                         <FontAwesomeIcon icon={faRepeat} size={'lg'} />
                     </div>
