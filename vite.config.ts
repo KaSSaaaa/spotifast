@@ -9,4 +9,7 @@ export default defineConfig({
         polyfillModulePreload: true,
     },
     plugins: [react(), crx({ manifest })],
+    server: {
+        port: 3000,
+    },
 });

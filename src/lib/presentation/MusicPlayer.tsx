@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useInjection } from 'inversify-react';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { IColorPalette } from './IColorPalette';
+import { IColorPalette } from '../domain/colorPalette/IColorPalette';
 import style from './MusicPlayer.module.scss';
 
 export const MusicPlayer = observer(() => {

@@ -168,17 +168,8 @@ nav {
 
 .svg-inline--fa {
     filter: drop-shadow(0.1em 0.1em 0.3em black);
-    opacity: 0.6;
     &:hover {
-        opacity: 1;
+        transform: scale(1.05);
         transition: all 250ms ease;
-    }
-
-    &.primary {
-        opacity: 1;
-        &:hover {
-            transform: scale(1.05);
-            transition: all 250ms ease;
-        }
     }
 }

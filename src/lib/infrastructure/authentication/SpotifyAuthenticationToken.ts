@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { IAuthenticationToken } from './IAuthenticationToken';
-import { ILoginQueryFactory } from './Login/ILoginQueryFactory';
-import { redirect } from './Login/Token';
+import { ILoginQueryFactory } from './login/ILoginQueryFactory';
+import { redirect } from './login/Token';
 
 @injectable()
 export class SpotifyAuthenticationToken implements IAuthenticationToken {
@@ -9,7 +9,6 @@ export class SpotifyAuthenticationToken implements IAuthenticationToken {
 
     async value(): Promise<string> {
         const code = new URLSearchParams(window.location.search).get('code');
-        console.log(code);
 
         if (!code) {
             redirect();
