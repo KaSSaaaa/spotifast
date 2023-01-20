@@ -10,14 +10,16 @@
         faRepeat,
         faVolumeHigh,
     } from '@fortawesome/free-solid-svg-icons';
-    import { ColorPalette } from '../../infrastructure/colorPalette/ColorPalette';
-    import { AzureColorQueryFactory } from '../../infrastructure/colorPalette/azure/AzureColorQueryFactory';
     import { autorun } from 'mobx';
+    import { getInjection } from '../../svelte-inversify';
+    import { IColorPalette } from '../../domain/colorPalette/IColorPalette';
 
     let light: string;
     let dark: string;
 
-    const colorPalette = new ColorPalette(new AzureColorQueryFactory());
+    const colorPalette = getInjection<IColorPalette>(IColorPalette.$);
+    console.log(colorPalette);
+
     let imageUrl = 'https://i.scdn.co/image/ab67616d00001e02e07e6833b024bdb852b96338';
 
     $: autorun(async () => {
@@ -51,7 +53,7 @@
             <input type="range" min={0} max={100} />
             <div class="audio-player-times">
                 <span>0:00</span>
-                <span>4:00</span>x
+                <span>4:00</span>
             </div>
         </div>
         <div class="audio-player-icons">

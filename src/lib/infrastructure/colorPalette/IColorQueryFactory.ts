@@ -1,5 +1,5 @@
-import { Palette } from '../../domain/colorPalette/Palette';
-import { ICommand } from '../ICommand';
+import type { Palette } from '../../domain/colorPalette/Palette';
+import type { ICommand } from '../ICommand';
 
 export interface IColorQueryFactory {
     createGetColorSchemeQuery(imageUrl: string): ICommand<Palette>;

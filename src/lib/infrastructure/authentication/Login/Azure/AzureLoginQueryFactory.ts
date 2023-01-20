@@ -1,9 +1,9 @@
 import { injectable } from 'inversify';
-import { ICommand } from '../../../ICommand';
-import { ILoginQueryFactory } from '../ILoginQueryFactory';
+import type { ICommand } from '../../../ICommand';
+import type { ILoginQueryFactory } from '../ILoginQueryFactory';
 import { AzureGetTokenQuery } from './AzureGetTokenQuery';
 import { AzureRefreshTokenQuery } from './AzureRefreshTokenQuery';
-import { Token } from '../Token';
+import type { Token } from '../Token';
 
 @injectable()
 export class AzureLoginQueryFactory implements ILoginQueryFactory {

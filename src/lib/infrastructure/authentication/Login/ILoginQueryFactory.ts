@@ -1,5 +1,5 @@
-import { ICommand } from '../../ICommand';
-import { Token } from './Token';
+import type { ICommand } from '../../ICommand';
+import type { Token } from './Token';
 
 export interface ILoginQueryFactory {
     createGetTokenQuery(code: string): ICommand<Token>;

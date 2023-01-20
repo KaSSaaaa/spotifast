@@ -1,17 +1,14 @@
 import { inject, injectable } from 'inversify';
-import { IAuthenticationToken } from './IAuthenticationToken';
+import type { IAuthenticationToken } from './IAuthenticationToken';
 import { ILoginQueryFactory } from './login/ILoginQueryFactory';
-import { Token, redirect } from './login/Token';
-import { Router } from '../../presentation/router/Router';
+import { redirect } from './login/Token';
+import { replace } from 'svelte-spa-router';
 
 @injectable()
 export class SpotifyAuthenticationToken implements IAuthenticationToken {
     private _value?: string;
 
-    constructor(
-        @inject(ILoginQueryFactory.$) private _loginQueryFactory: ILoginQueryFactory,
-        @inject(Router.$) private _router: Router
-    ) {}
+    constructor(@inject(ILoginQueryFactory.$) private _loginQueryFactory: ILoginQueryFactory) {}
 
     async value(): Promise<string> {
         if (!this._value) {
@@ -25,7 +22,7 @@ export class SpotifyAuthenticationToken implements IAuthenticationToken {
             const { accessToken } = await query.execute();
             this._value = accessToken;
 
-            this._router.navigate('/');
+            replace('/');
         }
         return this._value;
     }
