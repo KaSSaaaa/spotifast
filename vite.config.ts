@@ -1,14 +1,11 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { crx } from '@crxjs/vite-plugin';
 import manifest from './manifest.json' assert { type: 'json' };
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    build: {
-        polyfillModulePreload: true,
-    },
-    plugins: [react(), crx({ manifest })],
+    plugins: [svelte(), crx({ manifest })],
     server: {
         port: 3000,
     },

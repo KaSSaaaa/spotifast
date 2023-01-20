@@ -1,9 +1,8 @@
 import { inject, injectable } from 'inversify';
 import { action, makeAutoObservable } from 'mobx';
-import { IPlayer } from '../../domain/player/IPlayer';
+import type { IPlayer } from '../../domain/player/IPlayer';
 import { IAuthenticationToken } from '../authentication/IAuthenticationToken';
-import { RepeatState } from '../../domain/player/RepeatState';
-import axios from 'axios';
+import type { RepeatState } from '../../domain/player/RepeatState';
 
 //TODO State pattern for using either web or existing playback
 
@@ -41,11 +40,16 @@ export class SpotifyPlayer implements IPlayer {
 
             // Ready
             this._player.addListener('ready', async ({ device_id }: any) => {
-                const { data, status } = await axios.get('https://api.spotify.com/v1/me/player', {
+                const { data, status } = await fetch('https://api.spotify.com/v1/me/player', {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${await this._authenticationToken.value()}`,
                     },
+                }).then(async (response) => {
+                    return {
+                        data: await response.json(),
+                        status: response.status,
+                    };
                 });
 
                 if (status !== 204) this._currentDeviceId = data.device.id;
@@ -62,18 +66,18 @@ export class SpotifyPlayer implements IPlayer {
 
     async togglePlay(): Promise<void> {
         if (this._currentDeviceId !== this._webPlayerDeviceId) {
-            await axios.put(
-                `https://api.spotify.com/v1/me/player/play?device_id=${this._currentDeviceId}`,
-                {
-                    // uris: ['spotify:track:3AzjcOeAmA57TIOr9zF1ZW'],
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${await this._authenticationToken.value()}`,
-                    },
-                }
-            );
+            // await axios.put(
+            //     `https://api.spotify.com/v1/me/player/play?device_id=${this._currentDeviceId}`,
+            //     {
+            //         // uris: ['spotify:track:3AzjcOeAmA57TIOr9zF1ZW'],
+            //     },
+            //     {
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             Authorization: `Bearer ${await this._authenticationToken.value()}`,
+            //         },
+            //     }
+            // );
         } else {
             this._player?.togglePlay();
         }

@@ -1,4 +1,4 @@
-import { RepeatState } from './RepeatState';
+import type { RepeatState } from './RepeatState';
 
 export interface IPlayer {
     togglePlay(): Promise<void>;

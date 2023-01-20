@@ -9,15 +9,13 @@ import { IColorPalette } from './domain/colorPalette/IColorPalette';
 import { IColorQueryFactory } from './infrastructure/colorPalette/IColorQueryFactory';
 import { AzureColorQueryFactory } from './infrastructure/colorPalette/azure/AzureColorQueryFactory';
 import { ILoginQueryFactory } from './infrastructure/authentication/login/ILoginQueryFactory';
-import { Router } from './presentation/router/Router';
 
-export function createContainer(router: Router): Container {
+export function createContainer(): Container {
     const container = new Container();
     container.bind(IAuthenticationToken.$).to(SpotifyAuthenticationToken).inSingletonScope();
     container.bind(IPlayer.$).to(SpotifyPlayer).inSingletonScope();
     container.bind(ILoginQueryFactory.$).to(AzureLoginQueryFactory).inSingletonScope();
     container.bind(IColorPalette.$).to(ColorPalette).inSingletonScope();
     container.bind(IColorQueryFactory.$).to(AzureColorQueryFactory).inSingletonScope();
-    container.bind(Router.$).toConstantValue(router);
     return container;
 }

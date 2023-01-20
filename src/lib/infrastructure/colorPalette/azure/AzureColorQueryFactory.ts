@@ -1,7 +1,7 @@
 import { injectable } from 'inversify';
-import { Palette } from '../../../domain/colorPalette/Palette';
-import { ICommand } from '../../ICommand';
-import { IColorQueryFactory } from './../IColorQueryFactory';
+import type { Palette } from '../../../domain/colorPalette/Palette';
+import type { ICommand } from '../../ICommand';
+import type { IColorQueryFactory } from '../IColorQueryFactory';
 import { AzureGetColorSchemeQuery } from './AzureGetColorSchemeQuery';
 
 @injectable()

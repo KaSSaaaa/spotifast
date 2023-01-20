@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { action, makeAutoObservable } from 'mobx';
-import { IColorPalette } from '../../domain/colorPalette/IColorPalette';
+import type { IColorPalette } from '../../domain/colorPalette/IColorPalette';
 import { IColorQueryFactory } from './IColorQueryFactory';
 
 @injectable()
