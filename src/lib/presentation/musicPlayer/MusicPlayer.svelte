@@ -13,11 +13,13 @@
     import { autorun } from 'mobx';
     import { getInjection } from '../../svelte-inversify';
     import { IColorPalette } from '../../domain/colorPalette/IColorPalette';
+    import { IPlayer } from '../../domain/player/IPlayer';
 
     let light: string;
     let dark: string;
 
     const colorPalette = getInjection<IColorPalette>(IColorPalette.$);
+    const player = getInjection<IPlayer>(IPlayer.$);
     console.log(colorPalette);
 
     let imageUrl = 'https://i.scdn.co/image/ab67616d00001e02e07e6833b024bdb852b96338';

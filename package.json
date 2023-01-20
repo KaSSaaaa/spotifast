@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build && yarn download:sdk",
+        "build": "vite build && yarn download:sdk",
         "preview": "vite preview",
         "start:func": "yarn --cwd ./functions start",
         "download:sdk": "node ./downloadSdk.js",

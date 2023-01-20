@@ -45,15 +45,14 @@ export class SpotifyPlayer implements IPlayer {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${await this._authenticationToken.value()}`,
                     },
-                }).then(async (response) => {
+                }).then((response) => {
                     return {
-                        data: await response.json(),
+                        data: response,
                         status: response.status,
                     };
                 });
 
-                if (status !== 204) this._currentDeviceId = data.device.id;
-                console.log(data);
+                if (status !== 204) this._currentDeviceId = (await data.json()).device.id;
 
                 this._webPlayerDeviceId = device_id;
             });
